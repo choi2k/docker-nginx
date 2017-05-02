@@ -9,7 +9,8 @@ ENV NGINX_VERSION=1.10.3 \
     NGINX_SITECONF_DIR=/etc/nginx/sites-enabled \
     NGINX_LOG_DIR=/var/log/nginx \
     NGINX_TEMP_DIR=/var/lib/nginx \
-    NGINX_SETUP_DIR=/usr/src/nginx
+    NGINX_SETUP_DIR=/usr/src/nginx \
+    GEOIP_VERSION=1.6.10
 
 ARG WITH_DEBUG=false
 ARG WITH_NDK=true

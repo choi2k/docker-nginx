@@ -54,6 +54,22 @@ ${WITH_LUA} && {
   export LUAJIT_INC=/usr/include/luajit-2.1
 }
 
+
+# install GeoIP:
+curl -fSL https://github.com/maxmind/geoip-api-c/releases/download/v${GEOIP_VERSION}/GeoIP-${GEOIP_VERSION}.tar.gz -o "${NGINX_SETUP_DIR}/geoip_module.tar"
+
+tar -zxC "${NGINX_SETUP_DIR}" -f "${NGINX_SETUP_DIR}/geoip_module.tar"
+
+echo "Start build geoip module"
+cd ${NGINX_SETUP_DIR}/GeoIP-${GEOIP_VERSION}
+./configure
+make
+make check
+make install 
+echo "build geoip module DONE"
+cd ${NGINX_SETUP_DIR}
+
+
 #nginx user role
 mkdir -p /var/www/nginx
 addgroup -S ${NGINX_USER}
