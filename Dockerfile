@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:latest
 LABEL maintainer "admin@rexnote.com"
 
 ENV NGINX_VERSION=1.10.3 \
@@ -17,6 +17,8 @@ ARG WITH_NDK=true
 ARG WITH_LUA=true
 ARG WITH_PURGE=true
 ARG WITH_UPSTREAM_CHECK=true
+
+ENV TZ=Asia/Hong_Kong
 
 RUN apk --no-cache update && \
     apk --no-cache upgrade && \
