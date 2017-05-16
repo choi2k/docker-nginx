@@ -1,5 +1,5 @@
 FROM alpine:3.5
-LABEL maintainer "v.la@live.cn"
+LABEL maintainer "admin@rexnote.com"
 
 ENV NGINX_VERSION=1.10.3 \
     LUA_MODULE_VERSION=0.10.6 \
@@ -18,6 +18,9 @@ ARG WITH_LUA=true
 ARG WITH_PURGE=true
 ARG WITH_UPSTREAM_CHECK=true
 
+RUN apk --no-cache update && \
+    apk --no-cache upgrade && \
+apk --no-cache add tzdata openntpd
 
 COPY setup/ ${NGINX_SETUP_DIR}/
 RUN sh ${NGINX_SETUP_DIR}/install.sh
