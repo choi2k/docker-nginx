@@ -24,6 +24,10 @@ RUN apk --no-cache update && \
     apk --no-cache upgrade && \
 apk --no-cache add tzdata openntpd
 
+RUN apk --update add logrotate
+ADD nginx /etc/logrotate.d/nginx
+RUN echo "59 23 * * *	/usr/sbin/logrotate /etc/logrotate.d/nginx" >> /etc/crontabs/root
+
 COPY setup/ ${NGINX_SETUP_DIR}/
 RUN sh ${NGINX_SETUP_DIR}/install.sh
 
