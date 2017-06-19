@@ -33,6 +33,8 @@ elif [[ "${1}" == nginx || "${1}" == $(which nginx) ]]; then
   set --
 fi
 
+crond start
+
 if [[ -z "${1}" ]]; then
   echo "Starting nginx..."
   exec $(which nginx) -c /etc/nginx/nginx.conf -g "daemon off;" ${EXTRA_ARGS}
