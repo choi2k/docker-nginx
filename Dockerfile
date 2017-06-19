@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.5
 LABEL maintainer "admin@rexnote.com"
 
 ENV NGINX_VERSION=1.10.3 \
@@ -29,6 +29,7 @@ ADD nginx /etc/logrotate.d/nginx
 RUN echo "59 23 * * *	/usr/sbin/logrotate /etc/logrotate.d/nginx" >> /etc/crontabs/root
 
 COPY setup/ ${NGINX_SETUP_DIR}/
+
 RUN sh ${NGINX_SETUP_DIR}/install.sh
 
 COPY entrypoint.sh /sbin/entrypoint.sh
